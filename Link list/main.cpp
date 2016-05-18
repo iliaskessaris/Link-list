@@ -12,7 +12,7 @@ int main() {
 	List ListOfNumbers;
 	
 	char choice;
-	int	addData;
+	int addData;
 	bool exitcode = false;
 
 	while (exitcode == false) {
@@ -23,7 +23,7 @@ int main() {
 		cout << "To display the list press:  4\n";
 		cout << "To save the list in a file press:  5\n";
 		cout << "To build up the list from a file press:  6\n";
-		cout << "To stop the program press any key\n";
+		cout << "To stop the program press any other key\n";
 		cin >> choice;
 
 		switch (choice) {
@@ -34,7 +34,7 @@ int main() {
 			menuorder();
 			break;
 		case '2':
-			cout << "Type the item to serch for in the list\n";
+			cout << "Type the item to search for in the list\n";
 			cin >> addData;
 			ListOfNumbers.searchList(addData);
 			break;
