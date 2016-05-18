@@ -19,7 +19,7 @@ void List::readFromFile() {
 	while (!readFromFileToList.eof()) {
 		readFromFileToList >> addData;
 		if (addData != ' ') {
-			AddAtEnd(addData); //Can be changed by addInAscOrder e.t.c. depending on the type of list I want to create.
+			AddAtEnd(addData); //Can be changed by AddInAscOrder e.t.c. depending on the type of list I want to create.
 		}
 	}
 	readFromFileToList.close();

@@ -14,7 +14,8 @@ class List {
 		void searchList(int searchData);
 		void DeleteNode(int delData);
 		void PrintList();
-				
+		
+		
 	private:
 		typedef struct node {
 					int data;
