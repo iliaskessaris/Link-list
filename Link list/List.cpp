@@ -11,6 +11,54 @@ List::List() {
 	temp = NULL;
 }
 
+bool List::menulist() {
+	char choice;
+	int	addData;
+	bool status = false;
+	
+	cout << "Choose operation:\n";
+	cout << "To add item in the list press:  1\n";
+	cout << "To search for an item in the list press:  2\n";
+	cout << "To delete item from the list press:  3\n";
+	cout << "To display the list press:  4\n";
+	cout << "To save the list in a file press:  5\n";
+	cout << "To build up the list from a file press:  6\n";
+	cout << "To stop the program press any key\n";
+	cin >> choice;
+
+	switch (choice) {
+	case '1':
+		cout << "Type the item to add in the list\n";
+		cin >> addData;
+		AddAtEnd(addData);
+		//menuorder();
+		break;
+	case '2':
+		cout << "Type the item to serch for in the list\n";
+		cin >> addData;
+		searchList(addData);
+		break;
+	case '3':
+		cout << "Type the item to delete from the list\n";
+		cin >> addData;
+		DeleteNode(addData);
+		break;
+	case '4':
+		PrintList();
+		break;
+	case '5':
+		storeInFile();
+		break;
+	case '6':
+		readFromFile();
+		break;
+	default:
+		status = true;
+		break;
+	}
+	return status;
+}
+
 //Read data from file and bulds up a list
 void List::readFromFile() {
 	int addData;
@@ -18,9 +66,7 @@ void List::readFromFile() {
 	
 	while (!readFromFileToList.eof()) {
 		readFromFileToList >> addData;
-		if (addData != ' ') {
-			AddAtEnd(addData); //Can be changed by AddInAscOrder e.t.c. depending on the type of list I want to create.
-		}
+		AddAtEnd(addData); //Can be changed by AddInAscOrder e.t.c. depending on the type of list I want to create.
 	}
 	readFromFileToList.close();
 }
@@ -31,8 +77,11 @@ void List::storeInFile() {
 	curr = head;
 
 	while (curr != NULL) {
-		storeListToFile << curr->data << endl;
+		storeListToFile << curr->data;
 		curr = curr->next;
+		if (curr != NULL) { //avoid the addition of space at the end of the file.
+			storeListToFile << endl;
+		}
 	}
 	storeListToFile.close();
 }
