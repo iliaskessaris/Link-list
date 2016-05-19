@@ -8,54 +8,58 @@ void menuorder() {
 
 }
 
+bool listmenu(List ListOfNumbers) {
+	char choice;
+	int	addData;
+	
+	cout << "Choose operation:\n";
+	cout << "To add item in the list press:  1\n";
+	cout << "To search for an item in the list press:  2\n";
+	cout << "To delete item from the list press:  3\n";
+	cout << "To display the list press:  4\n";
+	cout << "To save the list in a file press:  5\n";
+	cout << "To build up the list from a file press:  6\n";
+	cout << "To stop the program press any key\n";
+	cin >> choice;
+
+	switch (choice) {
+	case '1':
+		cout << "Type the item to add in the list\n";
+		cin >> addData;
+		ListOfNumbers.AddAtEnd(addData);
+		menuorder();
+		break;
+	case '2':
+		cout << "Type the item to serch for in the list\n";
+		cin >> addData;
+		ListOfNumbers.searchList(addData);
+		break;
+	case '3':
+		cout << "Type the item to delete from the list\n";
+		cin >> addData;
+		ListOfNumbers.DeleteNode(addData);
+		break;
+	case '4':
+		ListOfNumbers.PrintList();
+		break;
+	case '5':
+		ListOfNumbers.storeInFile();
+		break;
+	case '6':
+		ListOfNumbers.readFromFile();
+		break;
+	default:
+		return(true);
+	}
+}
+
 int main() {
 	List ListOfNumbers;
 	
-	char choice;
-	int	addData;
-	bool exitcode = false;
+	
 
-	while (exitcode == false) {
-		cout << "Choose operation:\n";
-		cout << "To add item in the list press:  1\n";
-		cout << "To search for an item in the list press:  2\n";
-		cout << "To delete item from the list press:  3\n";
-		cout << "To display the list press:  4\n";
-		cout << "To save the list in a file press:  5\n";
-		cout << "To build up the list from a file press:  6\n";
-		cout << "To stop the program press any key\n";
-		cin >> choice;
-
-		switch (choice) {
-		case '1':
-			cout << "Type the item to add in the list\n";
-			cin >> addData;
-			ListOfNumbers.AddAtEnd(addData);
-			menuorder();
-			break;
-		case '2':
-			cout << "Type the item to serch for in the list\n";
-			cin >> addData;
-			ListOfNumbers.searchList(addData);
-			break;
-		case '3':
-			cout << "Type the item to delete from the list\n";
-			cin >> addData;
-			ListOfNumbers.DeleteNode(addData);
-			break;
-		case '4':
-			ListOfNumbers.PrintList();
-			break;
-		case '5':
-			ListOfNumbers.storeInFile();
-			break;
-		case '6':
-			ListOfNumbers.readFromFile();
-			break;
-		default:
-			exitcode = true;
-			break;
-		}
+	while (!listmenu(List ListOfNumbers)) {
+		
 	}
 
 
