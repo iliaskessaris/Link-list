@@ -23,7 +23,7 @@ bool List::menulist() {
 	cout << "To display the list press:  4\n";
 	cout << "To save the list in a file press:  5\n";
 	cout << "To build up the list from a file press:  6\n";
-	cout << "To stop the program press any key\n";
+	cout << "To stop the program press any other key\n";
 	cin >> choice;
 
 	switch (choice) {
