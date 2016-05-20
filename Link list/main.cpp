@@ -15,9 +15,7 @@ void menuorder() {
 int main() {
 	List ListOfNumbers;
 	
-
 	while (!ListOfNumbers.menulist()) {
-		
 	
 	}
 	//List ListOfNumbers;
