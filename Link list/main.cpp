@@ -20,10 +20,6 @@ int main() {
 		
 	
 	}
-		
-
-
-
 	//List ListOfNumbers;
 	//int value;
 
