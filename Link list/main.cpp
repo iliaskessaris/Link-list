@@ -5,13 +5,6 @@
 using namespace std;
 
 
-
-void menuorder() {
-
-}
-
-
-
 int main() {
 	List ListOfNumbers;
 	
