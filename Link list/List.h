@@ -15,7 +15,7 @@ public:
 	void searchList(int searchData);
 	void DeleteNode(int delData);
 	void PrintList();
-	void MenuForListOrder();
+	void MenuForListOrder(int addData);
 	bool MenuList();
 
 private:
@@ -27,6 +27,7 @@ private:
 	nodePtr head;
 	nodePtr curr;
 	nodePtr temp;
+	int typeOfListOrder = 0; //The variable keeps the type of order of the link list.
 	void searchListRecursively(nodePtr position, int s);	
 };
 

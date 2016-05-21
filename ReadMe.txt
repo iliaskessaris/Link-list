@@ -6,5 +6,7 @@ It gives you the oportunity to chose the way the list is ordered
 of buiding up from keyboard or from a file. Every node of the list
 contains a number the the address of the next node. The input for the list
 can be only numbers.
+The basic files to check are main.cpp, List.cpp and List.h. The ListFile.txt
+that has the data of the list must not have empty lines past its last data.
 
 Developed in VS not only by me but from her also.

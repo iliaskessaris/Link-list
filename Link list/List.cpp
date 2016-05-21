@@ -11,8 +11,47 @@ List::List() {
 	temp = NULL;
 }
 
-void List::MenuForListOrder() {
+void List::MenuForListOrder(int addData) {
+	char choice;
 
+	cout << "\nChoose the way you want to build your list\n";
+	cout << "For no order press: 1\n";
+	cout << "For Ascending order press: 2\n";
+	cout << "For Descending order press: 3\n";
+	cout << "To descard the item you just typed press any other character\n";
+	cin >> choice;
+
+	switch (choice) {
+	case '1':
+		if (typeOfListOrder == 0 || typeOfListOrder == 1) {
+			typeOfListOrder = 1;
+			AddAtEnd(addData);
+		}
+		else {
+			cout<<"There is no order in the list now. You can not change this now."
+		}
+		break;
+	case '2':
+		if (typeOfListOrder == 0 || typeOfListOrder == 2) {
+			typeOfListOrder = 2;
+			AddInAscOrder(addData);
+		}
+		else {
+			cout << "The order of the list is Ascending.. You can not change this now."
+		}
+		break;
+	case '3':
+		if (typeOfListOrder == 0 || typeOfListOrder == 3) {
+			typeOfListOrder = 3;
+			AddInDescOrder(addData);
+		}
+		else {
+			cout << "The order of the list is Descending. You can not change this now."
+		}
+		break;
+	default:
+		break;
+	}
 }
 
 bool List::MenuList() {
@@ -34,8 +73,7 @@ bool List::MenuList() {
 	case '1':
 		cout << "Type the item to add in the list\n";
 		cin >> addData;
-		AddAtEnd(addData);
-		//MenuForListOrder();
+		MenuForListOrder(addData);
 		break;
 	case '2':
 		cout << "Type the item to serch for in the list\n";
@@ -51,6 +89,7 @@ bool List::MenuList() {
 		PrintList();
 		break;
 	case '5':
+		typeOfListOrder = 0;
 		storeInFile();
 		break;
 	case '6':
