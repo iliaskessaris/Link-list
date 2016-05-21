@@ -15,7 +15,8 @@ public:
 	void searchList(int searchData);
 	void DeleteNode(int delData);
 	void PrintList();
-	bool menulist();
+	void MenuForListOrder();
+	bool MenuList();
 
 private:
 	typedef struct node {

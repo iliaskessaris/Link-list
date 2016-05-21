@@ -11,7 +11,11 @@ List::List() {
 	temp = NULL;
 }
 
-bool List::menulist() {
+void List::MenuForListOrder() {
+
+}
+
+bool List::MenuList() {
 	char choice;
 	int	addData;
 	bool status = false;
@@ -31,7 +35,7 @@ bool List::menulist() {
 		cout << "Type the item to add in the list\n";
 		cin >> addData;
 		AddAtEnd(addData);
-		//menuorder();
+		//MenuForListOrder();
 		break;
 	case '2':
 		cout << "Type the item to serch for in the list\n";
