@@ -15,7 +15,8 @@ public:
 	void searchList(int searchData);
 	void DeleteNode(int delData);
 	void PrintList();
-	void MenuForListOrder(int addData);
+	void MenuForListOrderFromUser(int addData);
+	void MenuForListOrderFromFile();
 	bool MenuList();
 
 private:

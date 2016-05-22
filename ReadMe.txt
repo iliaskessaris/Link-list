@@ -9,4 +9,4 @@ can be only numbers.
 The basic files to check are main.cpp, List.cpp and List.h. The ListFile.txt
 that has the data of the list must not have empty lines past its last data.
 
-Developed in VS not only by me but from her also.
+Developed in VS not only by me but by her also.

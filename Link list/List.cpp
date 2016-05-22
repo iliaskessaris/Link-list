@@ -11,7 +11,17 @@ List::List() {
 	temp = NULL;
 }
 
-void List::MenuForListOrder(int addData) {
+void List::MenuForListOrderFromFile() {
+	char choice;
+
+	cout << "\nChoose the way you want to build your list from the File\n";
+	cout << "For the same order press: 1\n";
+	cout << "For Ascending order press: 2\n";
+	cout << "For Descending order press: 3\n";
+	cout << "To exit this menu press any other character\n";
+}
+
+void List::MenuForListOrderFromUser(int addData) {
 	char choice;
 
 	cout << "\nChoose the way you want to build your list\n";
@@ -28,7 +38,7 @@ void List::MenuForListOrder(int addData) {
 			AddAtEnd(addData);
 		}
 		else {
-			cout<<"There is no order in the list now. You can not change this now."
+			cout << "There is no order in the list. You can not change this now.\n";
 		}
 		break;
 	case '2':
@@ -37,7 +47,7 @@ void List::MenuForListOrder(int addData) {
 			AddInAscOrder(addData);
 		}
 		else {
-			cout << "The order of the list is Ascending.. You can not change this now."
+			cout << "The order of the list is Ascending. You can not change this now.\n";
 		}
 		break;
 	case '3':
@@ -46,10 +56,11 @@ void List::MenuForListOrder(int addData) {
 			AddInDescOrder(addData);
 		}
 		else {
-			cout << "The order of the list is Descending. You can not change this now."
+			cout << "The order of the list is Descending. You can not change this now.\n";
 		}
 		break;
 	default:
+		cout << "The item you typed just dropped\n";
 		break;
 	}
 }
@@ -73,7 +84,7 @@ bool List::MenuList() {
 	case '1':
 		cout << "Type the item to add in the list\n";
 		cin >> addData;
-		MenuForListOrder(addData);
+		MenuForListOrderFromUser(addData);
 		break;
 	case '2':
 		cout << "Type the item to serch for in the list\n";
