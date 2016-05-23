@@ -11,20 +11,80 @@ List::List() {
 	temp = NULL;
 }
 
+//*
+void List::FindListOrderInFile() {
+	ifstream typeOfListOrderFile("TypeOfListOrder.txt");
+
+	typeOfListOrderFile >> typeOfListOrder;
+	switch (typeOfListOrder) {
+	case 1:
+		cout << "The list in the file is not orderred\n";
+		break;
+	case 2:
+		cout << "The list in the file is in ascending order\n";
+		break;
+	case 3:
+		cout << "The list in the file is in descending order\n";
+		break;
+	default:
+		cout << "The file is empty\n";
+		break;
+	}
+
+	typeOfListOrderFile.close();
+}
+
+//Provides you the ability to choose the way the list will be build from the file*.
 void List::MenuForListOrderFromFile() {
 	char choice;
+	
 
+	FindListOrderInFile();
 	cout << "\nChoose the way you want to build your list from the File\n";
-	cout << "For the same order press: 1\n";
+	cout << "For no order press: 1\n";
 	cout << "For Ascending order press: 2\n";
 	cout << "For Descending order press: 3\n";
 	cout << "To exit this menu press any other character\n";
+	cin >> choice;
+	switch (choice) {
+	case '1':
+		if (typeOfListOrder == 0 || typeOfListOrder == 1) {
+			typeOfListOrder = 1;
+			readFromFile(); 
+		}
+		else {
+			cout << "There is no order in the list. You can not change this now.\n";
+		}
+		break;
+	case '2':
+		if (typeOfListOrder == 0 || typeOfListOrder == 2) {
+			typeOfListOrder = 2;
+			readFromFile(); 
+		}
+		else {
+			cout << "The order of the list is Ascending. You can not change this now.\n";
+		}
+		break;
+	case '3':
+		if (typeOfListOrder == 0 || typeOfListOrder == 3) {
+			typeOfListOrder = 3;
+			readFromFile(); 
+		}
+		else {
+			cout << "The order of the list is Descending. You can not change this now.\n";
+		}
+		break;
+	default:
+		cout << "The item you typed just dropped\n";
+		break;
+	}
 }
 
+//Provides you the ability to choose the type of order you want for the list.
 void List::MenuForListOrderFromUser(int addData) {
 	char choice;
 
-	cout << "\nChoose the way you want to build your list\n";
+	cout << "\nChoose the way you want to add the item in the list\n";
 	cout << "For no order press: 1\n";
 	cout << "For Ascending order press: 2\n";
 	cout << "For Descending order press: 3\n";
@@ -63,13 +123,16 @@ void List::MenuForListOrderFromUser(int addData) {
 		cout << "The item you typed just dropped\n";
 		break;
 	}
+	cout << "The order of the list is: " << typeOfListOrder;
 }
 
+//Provides you the ability to choose the type of operation to perform on the list.
 bool List::MenuList() {
 	char choice;
 	int	addData;
 	bool status = false;
 	
+	cout << "\nType Of List Order menu: " << typeOfListOrder << endl;
 	cout << "Choose operation:\n";
 	cout << "To add item in the list press:  1\n";
 	cout << "To search for an item in the list press:  2\n";
@@ -100,11 +163,10 @@ bool List::MenuList() {
 		PrintList();
 		break;
 	case '5':
-		typeOfListOrder = 0;
 		storeInFile();
 		break;
 	case '6':
-		readFromFile();
+		MenuForListOrderFromFile();
 		break;
 	default:
 		status = true;
@@ -113,14 +175,26 @@ bool List::MenuList() {
 	return status;
 }
 
-//Read data from file and bulds up a list
+//Read data from file and build up a list depending on the value of typeOfListOrder variable.
 void List::readFromFile() {
-	int addData;
 	ifstream readFromFileToList("ListFile.txt");
-	
+	int addData;
+		
 	while (!readFromFileToList.eof()) {
 		readFromFileToList >> addData;
-		AddAtEnd(addData); //Can be changed by AddInAscOrder e.t.c. depending on the type of list I want to create.
+		switch (typeOfListOrder) {
+		case 1:
+			AddAtEnd(addData); 
+			break;
+		case 2:
+			AddInAscOrder(addData);
+			break;
+		case 3:
+			AddInDescOrder(addData);
+			break;
+		default:
+			break;
+		}
 	}
 	readFromFileToList.close();
 }
@@ -128,8 +202,11 @@ void List::readFromFile() {
 //Stores the list in a file.
 void List::storeInFile() {
 	ofstream storeListToFile("ListFile.txt");
+	ofstream typeOfListOrderFile("TypeOfListOrder.txt");
+	
 	curr = head;
 
+	
 	while (curr != NULL) {
 		storeListToFile << curr->data;
 		curr = curr->next;
@@ -137,7 +214,10 @@ void List::storeInFile() {
 			storeListToFile << endl;
 		}
 	}
+	
+	typeOfListOrderFile << typeOfListOrder;
 	storeListToFile.close();
+	typeOfListOrderFile.close();
 }
 
 //Insert node in the list.

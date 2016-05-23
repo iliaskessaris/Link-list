@@ -17,6 +17,7 @@ public:
 	void PrintList();
 	void MenuForListOrderFromUser(int addData);
 	void MenuForListOrderFromFile();
+	void FindListOrderInFile();
 	bool MenuList();
 
 private:
