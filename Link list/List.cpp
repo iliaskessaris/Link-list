@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <fstream>
 #include "List.h"
+#include <string>
 using namespace std;
 
 //Constuctor for the List class.
@@ -11,9 +12,15 @@ List::List() {
 	temp = NULL;
 }
 
-//*
-void List::FindListOrderInFile() {
-	ifstream typeOfListOrderFile("TypeOfListOrder.txt");
+//Checks whether or not a particular file exists.
+bool List::FileExists(char s[]) {
+	ifstream CheckTheFile(s);
+	return CheckTheFile.is_open();
+}
+
+//Gets the type of stored list order from file TypeOfListOrder.txt.
+void List::FindListOrderInFile(char s[]) {
+	ifstream typeOfListOrderFile(s);
 
 	typeOfListOrderFile >> typeOfListOrder;
 	switch (typeOfListOrder) {
@@ -39,44 +46,39 @@ void List::MenuForListOrderFromFile() {
 	char choice;
 	
 
-	FindListOrderInFile();
-	cout << "\nChoose the way you want to build your list from the File\n";
-	cout << "For no order press: 1\n";
-	cout << "For Ascending order press: 2\n";
-	cout << "For Descending order press: 3\n";
-	cout << "To exit this menu press any other character\n";
-	cin >> choice;
-	switch (choice) {
-	case '1':
-		if (typeOfListOrder == 0 || typeOfListOrder == 1) {
-			typeOfListOrder = 1;
-			readFromFile(); 
+	if (FileExists("ListFile.txt")) {
+		if (FileExists("TypeOfListOrder.txt")) {
+			FindListOrderInFile("TypeOfListOrder.txt");
 		}
 		else {
-			cout << "There is no order in the list. You can not change this now.\n";
+			cout << "The file with the list exists but the file that keeps the order of the list has been destroyed\n";
 		}
-		break;
-	case '2':
-		if (typeOfListOrder == 0 || typeOfListOrder == 2) {
-			typeOfListOrder = 2;
-			readFromFile(); 
-		}
-		else {
-			cout << "The order of the list is Ascending. You can not change this now.\n";
-		}
-		break;
-	case '3':
-		if (typeOfListOrder == 0 || typeOfListOrder == 3) {
-			typeOfListOrder = 3;
-			readFromFile(); 
-		}
-		else {
-			cout << "The order of the list is Descending. You can not change this now.\n";
-		}
-		break;
-	default:
-		cout << "The item you typed just dropped\n";
-		break;
+			cout << "\nChoose the way you want to build your list from the File\n";
+			cout << "For no order press: 1\n";
+			cout << "For Ascending order press: 2\n";
+			cout << "For Descending order press: 3\n";
+			cout << "To exit this menu press any other character\n";
+			cin >> choice;
+			switch (choice) {
+			case '1':
+				typeOfListOrder = 1;
+				readFromFile();
+				break;
+			case '2':
+				typeOfListOrder = 2;
+				readFromFile();
+				break;
+			case '3':
+				typeOfListOrder = 3;
+				readFromFile();
+				break;
+			default:
+				cout << "The item you typed just dropped\n";
+				break;
+			}
+	}
+	else {
+		cout << "The list has not been stored in a file previously or the file is erased\n";
 	}
 }
 
@@ -98,7 +100,7 @@ void List::MenuForListOrderFromUser(int addData) {
 			AddAtEnd(addData);
 		}
 		else {
-			cout << "There is no order in the list. You can not change this now.\n";
+			cout << "You can not build unordered list. Choose another type of order.\n";
 		}
 		break;
 	case '2':
@@ -107,7 +109,7 @@ void List::MenuForListOrderFromUser(int addData) {
 			AddInAscOrder(addData);
 		}
 		else {
-			cout << "The order of the list is Ascending. You can not change this now.\n";
+			cout << "The order of the list is not Ascending. Choose another type of order.\n";
 		}
 		break;
 	case '3':
@@ -116,14 +118,13 @@ void List::MenuForListOrderFromUser(int addData) {
 			AddInDescOrder(addData);
 		}
 		else {
-			cout << "The order of the list is Descending. You can not change this now.\n";
+			cout << "The order of the list is not Descending. Choose another type of order.\n";
 		}
 		break;
 	default:
 		cout << "The item you typed just dropped\n";
 		break;
 	}
-	cout << "The order of the list is: " << typeOfListOrder;
 }
 
 //Provides you the ability to choose the type of operation to perform on the list.

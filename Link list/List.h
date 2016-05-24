@@ -1,11 +1,12 @@
 #ifndef LIST_H
 #define LIST_H
 
-
 class List {
-
+	
 public:
 	List();
+	
+
 	void insertInList(int addData);
 	void AddAtEnd(int addData);
 	void AddInAscOrder(int addData);
@@ -17,9 +18,10 @@ public:
 	void PrintList();
 	void MenuForListOrderFromUser(int addData);
 	void MenuForListOrderFromFile();
-	void FindListOrderInFile();
+	void FindListOrderInFile(char s[]);
 	bool MenuList();
-
+	bool FileExists(char s[]);
+	
 private:
 	typedef struct node {
 		int data;
