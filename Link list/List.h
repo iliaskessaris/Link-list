@@ -32,6 +32,7 @@ private:
 	nodePtr curr;
 	nodePtr temp;
 	int typeOfListOrder = 0; //The variable keeps the type of order of the link list.
+	bool ReadFromFile = false;
 	void searchListRecursively(nodePtr position, int s);	
 };
 

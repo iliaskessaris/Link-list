@@ -186,12 +186,15 @@ void List::readFromFile() {
 		switch (typeOfListOrder) {
 		case 1:
 			AddAtEnd(addData); 
+			ReadFromFile = true;
 			break;
 		case 2:
 			AddInAscOrder(addData);
+			ReadFromFile = true;
 			break;
 		case 3:
 			AddInDescOrder(addData);
+			ReadFromFile = true;
 			break;
 		default:
 			break;
